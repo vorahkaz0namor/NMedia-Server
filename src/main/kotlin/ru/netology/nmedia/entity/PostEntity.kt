@@ -8,12 +8,12 @@ import jakarta.persistence.GenerationType
 
 @Entity
 data class PostEntity(
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long,
-        var author: String,
-        var content: String,
-        var published: Long,
-        var likedByMe: Boolean,
-        var likes: Int = 0,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long,
+    var author: String,
+    var content: String,
+    var published: Long,
+    var likedByMe: Boolean,
+    var likes: Int = 0,
 ) {
     fun toDto() = Post(id, author, content, published, likedByMe, likes)
 
