@@ -29,7 +29,7 @@ class PostService(private val repository: PostRepository) {
                 dto.copy(
                     likes = 0,
                     likedByMe = false,
-                    published = OffsetDateTime.now().toEpochSecond()
+                    published = dto.published
                 )
             )
         )
@@ -58,6 +58,14 @@ class PostService(private val repository: PostRepository) {
         .apply {
             likes -= 1
             likedByMe = false
+        }
+        .toDto()
+
+    fun viewById(id: Long): Post = repository
+        .findById(id)
+        .orElseThrow(::NotFoundException)
+        .apply {
+            views += 1
         }
         .toDto()
 }

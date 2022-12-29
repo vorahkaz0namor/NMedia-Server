@@ -24,4 +24,7 @@ class PostController(private val service: PostService) {
 
     @DeleteMapping("/{id}/likes")
     fun unlikeById(@PathVariable id: Long) = service.unlikeById(id)
+
+    @PostMapping("/{id}/views")
+    fun viewById(@PathVariable id: Long) = service.viewById(id)
 }
